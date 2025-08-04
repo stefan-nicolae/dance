@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Autoplay Audio with Fallback</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      cursor: pointer;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <audio id="audio" src="aint nobody1.mp3" autoplay loop></audio>
+  <img src="dance.gif" alt="GIF">
+
+  <script>
+    const audio = document.getElementById("audio");
+
+    // Try autoplay again after user interaction if it fails
+    audio.play().catch(() => {
+      document.body.addEventListener("click", () => {
+        audio.play();
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
